@@ -10,5 +10,15 @@
   <%= @book.body %>
 </p>
 
+<p><strong>Comments</strong></p>
+
+<ul>
+  <% @book.comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>
+
+<%= render 'comments/form', comment: @comment %>
+
 <%= link_to 'Edit', edit_book_path(@book) %> |
 <%= link_to 'Back', books_path %>
