@@ -23,15 +23,14 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    binding.pry
     @comment = Comment.new(comment_params)
-
+    @commenteable_model = comment_params['commenteable_type'].constantize.find(comment_params['commenteable_id'])
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: "Comment was successfully created." }
+        format.html { redirect_to @commenteable_model, notice: "Comment was successfully created." }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to @commenteable_model, notice: "Comment was not created." }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
