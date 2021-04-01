@@ -1,5 +1,6 @@
 class DataController < ApplicationController
 
+  # GET /data/books
   def books
     books = Book.order(id: :desc)
     array = []
@@ -12,12 +13,16 @@ class DataController < ApplicationController
     render json: array
   end
 
+  # Get /data/book/:id
   def book
-    binding.pry
     book = Book.find(params[:id])
-
+    book_hash = book.as_json
+    book_hash['comments'] = book.comments.map{|c| { id: c.id, comment: c.body.body.to_html} }
+    book_hash['url'] = url_for(book.body.embeds.find{|embeds| embeds.image?})
+    render json: book_hash
   end
 
+  # GET /data/notes
   def notes
     notes = Note.order(id: :desc)
     array = []
@@ -35,11 +40,13 @@ class DataController < ApplicationController
     render json: array
   end
 
+  # GET /data/challenges
   def challenges
     challenges = Challenge.order(id: :desc)
     render json: challenges.to_json(include: :body)
   end
 
+  # GET /data/blogs
   def blogs
     blogs = Blog.order(id: :desc)
     render json: blogs.to_json(include: :body)
