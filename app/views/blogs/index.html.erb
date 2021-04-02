@@ -1,6 +1,9 @@
 <%= render template: 'navbar/index' %>
 <h1>Blogs</h1>
-
+<br>
+<%= link_to 'New Blog', new_blog_path %>
+<br>
+<br>
 <table>
   <thead>
     <tr>
@@ -22,7 +25,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Blog', new_blog_path %>
