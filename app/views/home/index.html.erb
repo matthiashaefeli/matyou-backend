@@ -2,7 +2,8 @@
   <% if user_authenticated %>
     <%= render template: 'navbar/index' %>
   <% end %>
-  <%= link_to 'OUT', destroy_user_session_path, method: :delete %>
 <% else %>
-  <%= link_to 'IN', new_user_session_path %>
+  <div class='hello'>
+    This is the backend for <%= link_to 'https://www.matyou.net/', 'https://www.matyou.net/' %><%= link_to '.', new_user_session_path %>
+  </div>
 <% end %>
