@@ -51,4 +51,10 @@ class DataController < ApplicationController
     blogs = Blog.order(id: :desc)
     render json: blogs.to_json(include: :body)
   end
+
+  # Get /data/topics
+  def topics
+    topics = Topic.order(title: :asc)
+    render json: topics.to_json
+  end
 end
