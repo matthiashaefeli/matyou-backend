@@ -1,0 +1,23 @@
+<p>
+  <strong>Title:</strong>
+  <%= @career.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @career.body %>
+</p>
+
+<p><strong>Comments</strong></p>
+
+<ul>
+  <% @career.comments.each do |comment| %>
+    <li><%= comment.body %></li>
+  <% end %>
+</ul>
+
+<%= render 'comments/form', comment: @comment %>
+
+
+<%= link_to 'Edit', edit_career_path(@career) %> |
+<%= link_to 'Back', careers_path %>
