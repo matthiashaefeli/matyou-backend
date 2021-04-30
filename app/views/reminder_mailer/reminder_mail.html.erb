@@ -1,0 +1,8 @@
+<h1>Learning Reminder</h1>
+<%= @cmds.each do |cmd| %>
+  <h2><%= cmd.title %></h2>
+  <p><%= cmd.body %></p>
+  <%= cmd.comments.each do |comment| %>
+    <p><%= comment.body %></p>
+  <% end %>
+<% end %>

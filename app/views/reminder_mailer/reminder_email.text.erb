@@ -1,0 +1,8 @@
+Learning Reminder
+<%= @cmds.each do |cmd| %>
+  <%= cmd.title %>
+  <%= cmd.body %>
+  <%= cmd.comments.each do |comment| %>
+    <%= comment.body %>
+  <% end %>
+<% end %>
