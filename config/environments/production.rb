@@ -118,18 +118,18 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  # config.action_mailer.delivery_method = :smtp
-  # host = 'www.matyou.net'
-  # config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.delivery_method = :smtp
+  host = 'www.matyou.net'
+  config.action_mailer.default_url_options = { host: host }
 
-  # # SMTP settings for gmail
+  # SMTP settings for gmail
 
-  # config.action_mailer.smtp_settings = {
-  #   :address => "smtp.gmail.com",
-  #   :port => 587,
-  #   :user_name => Rails.application.credentials.dig(:google, :mail_username),
-  #   :password => Rails.application.credentials.dig(:google, :mail_password),
-  #   :authentication => "plain",
-  #   :enable_starttls_auto => true,
-  # }
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :user_name => Rails.application.credentials.dig(:google, :mail_username),
+    :password => Rails.application.credentials.dig(:google, :mail_password),
+    :authentication => "plain",
+    :enable_starttls_auto => true,
+  }
 end
