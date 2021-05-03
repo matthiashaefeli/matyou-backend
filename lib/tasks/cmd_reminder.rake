@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Usage - Run:
-# 1. dry_run: bundle exec rake cmd_reminder
-# 2. live_run: bundle exec rake cmd_reminder DRY_RUN='false'
+# 1. run: bundle exec rake cmd_reminder
+
 
 task cmd_reminder: :environment do
   Rails.logger = Logger.new(STDOUT)
