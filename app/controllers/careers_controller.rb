@@ -1,5 +1,5 @@
 class CareersController < ApplicationController
-  before_action :set_career, only: %i[ show edit update destroy ]
+  before_action :set_career, only: %i[ show edit update destroy send_email ]
 
   # GET /careers or /careers.json
   def index
@@ -54,6 +54,12 @@ class CareersController < ApplicationController
       format.html { redirect_to careers_url, notice: "Career was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def send_email
+    email = 'haefeli.matthias@gmail.com'
+    CmdMailer.with(cmds: @career, email: email).send_cmd.deliver_later
+    redirect_to careers_path
   end
 
   private

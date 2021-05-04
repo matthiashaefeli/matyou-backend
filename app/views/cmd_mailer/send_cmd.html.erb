@@ -1,0 +1,6 @@
+<h1>CMD</h1>
+<h2><%= @cmd.title %></h2>
+<p><%= @cmd.body %></p>
+<%= @cmd.comments.each do |comment| %>
+  <p><%= comment.body %></p>
+<% end %>
