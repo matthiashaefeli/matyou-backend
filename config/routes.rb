@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   resources :blogs
   resources :comments
   resource :topics
-  resource :careers
+  resource :careers do
+    post :send_email, on: :member
+  end
   get 'data/books', to: 'data#books'
   get 'data/notes', to: 'data#notes'
   get 'data/challenges', to: 'data#challenges'

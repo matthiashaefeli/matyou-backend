@@ -2,7 +2,6 @@
   <% if career.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(career.errors.count, "error") %> prohibited this career from being saved:</h2>
-
       <ul>
         <% career.errors.each do |error| %>
           <li><%= error.full_message %></li>
