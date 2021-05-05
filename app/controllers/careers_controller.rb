@@ -57,7 +57,7 @@ class CareersController < ApplicationController
   end
 
   def send_email
-    email = 'haefeli.matthias@gmail.com'
+    email = params[:email].blank? ? 'haefeli.matthias@gmail.com' : params[:email]
     CmdMailer.with(cmds: @career, email: email).send_cmd.deliver_later
     redirect_to careers_path
   end
