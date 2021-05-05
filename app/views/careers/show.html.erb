@@ -1,4 +1,7 @@
-<%= link_to 'Send CMD', send_email_careers_path(id: @career.id), method: :post %>
+<%= form_with(url: send_email_careers_path(id: @career.id), method: "post") do |form| %>
+  <%= form.text_field :email, placeholder: 'My Email' %>
+  <%= form.submit "Send" %>
+<% end %>
 <p>
   <strong>Title:</strong>
   <%= @career.title %>
@@ -18,7 +21,6 @@
 </ul>
 
 <%= render 'comments/form', comment: @comment %>
-
 
 <%= link_to 'Edit', edit_career_path(@career) %> |
 <%= link_to 'Back', careers_path %>
