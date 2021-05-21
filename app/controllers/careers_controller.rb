@@ -8,6 +8,9 @@ class CareersController < ApplicationController
 
   # GET /careers/1 or /careers/1.json
   def show
+    @comment = Comment.new
+    @commenteable_type = 'Career'
+    @commenteable_id = @career.id
   end
 
   # GET /careers/new
