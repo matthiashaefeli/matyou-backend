@@ -24,6 +24,7 @@ class CommentsController < ApplicationController
   # POST /comments or /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.body = params[:body]
     @commenteable_model = comment_params['commenteable_type'].constantize.find(comment_params['commenteable_id'])
     respond_to do |format|
       if @comment.save
@@ -66,6 +67,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:body, :commenteable_type, :commenteable_id)
+      params.require(:comment).permit(:commenteable_type, :commenteable_id)
     end
 end
