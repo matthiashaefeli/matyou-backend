@@ -16,7 +16,7 @@
 
 <ul>
   <% @career.comments.each do |comment| %>
-    <li><%= comment.body %></li>
+    <li><%= comment.body %> <%= link_to 'Delete', comment_path(comment), method: :delete %></li>
   <% end %>
 </ul>
 
