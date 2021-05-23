@@ -13,7 +13,12 @@
 
 <ul>
   <% @book.comments.each do |comment| %>
-    <li><%= comment.body %><%= link_to 'Delete', comment_path(comment), method: :delete %></li>
+    <li>
+      <%= comment.body %>
+      <%= link_to comment_path(comment), method: :delete do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 
