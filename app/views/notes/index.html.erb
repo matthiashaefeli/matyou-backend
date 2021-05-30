@@ -23,6 +23,7 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'first page |', notes_path %>
 <%= link_to 'prev page |', notes_path(page: @page - 1) if @page > 0 %>
 <b>Page:<%= @page %></b> |
 <%= link_to 'next page', notes_path(page: @page + 1) %>
