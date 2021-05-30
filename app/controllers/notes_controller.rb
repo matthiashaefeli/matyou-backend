@@ -2,10 +2,16 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ create update destroy new edit ]
   before_action :user_authenticated, only: %i[ create update destroy new edit ]
+  before_action :set_pages, only: %i[ index ]
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.order('created_at DESC')
+    @show_all = true if params[:show_all]
+    @notes = if params[:show_all]
+               Note.order('created_at DESC')
+             else
+               Note.order('created_at DESC').limit(10).offset(@page * 10)
+             end
   end
 
   # GET /notes/1 or /notes/1.json
@@ -67,5 +73,9 @@ class NotesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def note_params
       params.require(:note).permit(:title, :body)
+    end
+
+    def set_pages
+      @page ||= params[:page].to_i || 0
     end
 end
