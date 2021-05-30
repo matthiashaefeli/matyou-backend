@@ -23,3 +23,7 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'prev page |', notes_path(page: @page - 1) if @page > 0 %>
+<b>Page:<%= @page %></b> |
+<%= link_to 'next page', notes_path(page: @page + 1) %>
+<%= link_to '| show all', notes_path(show_all: true) unless @show_all %>
