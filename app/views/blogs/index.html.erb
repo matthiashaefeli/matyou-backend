@@ -25,3 +25,8 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'first page |', blogs_path %>
+<%= link_to 'prev page |', blogs_path(page: @page - 1) if @page > 0 %>
+<b>Page:<%= @page %></b> |
+<%= link_to 'next page', blogs_path(page: @page + 1) %>
+<%= link_to '| show all', blogs_path(show_all: true) unless @show_all %>

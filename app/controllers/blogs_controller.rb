@@ -2,10 +2,16 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ create update destroy new edit ]
   before_action :user_authenticated, only: %i[ create update destroy new edit ]
+  before_action :set_pages, only: %i[ index ]
 
   # GET /blogs or /blogs.json
   def index
-    @blogs = Blog.order('created_at DESC')
+    @show_all = true if params[:show_all]
+    @blogs = if params[:show_all]
+               Blog.order('created_at DESC')
+             else
+               Blog.order('created_at DESC').limit(10).offset(@page * 10)
+             end
   end
 
   # GET /blogs/1 or /blogs/1.json
@@ -67,5 +73,9 @@ class BlogsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def blog_params
       params.require(:blog).permit(:title, :url, :body)
+    end
+
+    def set_pages
+      @page ||= params[:page].to_i || 0
     end
 end
