@@ -2,10 +2,16 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ create update destroy new edit ]
   before_action :user_authenticated, only: %i[ create update destroy new edit ]
+  before_action :set_pages, only: %i[ index ]
 
   # GET /challenges or /challenges.json
   def index
-    @challenges = Challenge.order('created_at DESC')
+    @show_all = true if params[:show_all]
+    @challenges = if params[:show_all]
+                    Challenge.order('created_at DESC')
+                  else
+                    Challenge.order('created_at DESC').limit(10).offset(@page * 10)
+                  end
   end
 
   # GET /challenges/1 or /challenges/1.json
@@ -67,5 +73,9 @@ class ChallengesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def challenge_params
       params.require(:challenge).permit(:title, :url, :body)
+    end
+
+    def set_pages
+      @page ||= params[:page].to_i || 0
     end
 end

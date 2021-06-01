@@ -1,9 +1,15 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ show edit update destroy ]
+  before_action :set_pages, only: %i[ index ]
 
   # GET /topics or /topics.json
   def index
-    @topics = Topic.order('created_at DESC')
+    @show_all = true if params[:show_all]
+    @topics = if params[:show_all]
+                Topic.order('created_at DESC')
+              else
+                Topic.order('created_at DESC').limit(10).offset(@page * 10)
+              end
   end
 
   # GET /topics/1 or /topics/1.json
@@ -65,5 +71,9 @@ class TopicsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def topic_params
       params.require(:topic).permit(:title)
+    end
+
+    def set_pages
+      @page ||= params[:page].to_i || 0
     end
 end
