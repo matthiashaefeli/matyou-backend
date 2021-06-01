@@ -1,9 +1,15 @@
 class CareersController < ApplicationController
   before_action :set_career, only: %i[ show edit update destroy send_email ]
+  before_action :set_pages, only: %i[ index ]
 
   # GET /careers or /careers.json
   def index
-    @careers = Career.order('created_at DESC')
+    @show_all = true if params[:show_all]
+    @careers = if params[:show_all]
+                Career.order('created_at DESC')
+              else
+                Career.order('created_at DESC').limit(10).offset(@page * 10)
+              end
   end
 
   # GET /careers/1 or /careers/1.json
@@ -74,5 +80,9 @@ class CareersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def career_params
       params.require(:career).permit(:title, :body)
+    end
+
+    def set_pages
+      @page ||= params[:page].to_i || 0
     end
 end
