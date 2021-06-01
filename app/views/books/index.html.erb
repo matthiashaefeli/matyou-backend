@@ -23,3 +23,8 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'first page |', books_path %>
+<%= link_to 'prev page |', books_path(page: @page - 1) if @page > 0 %>
+<b>Page:<%= @page %></b> |
+<%= link_to 'next page', books_path(page: @page + 1) %>
+<%= link_to '| show all', books_path(show_all: true) unless @show_all %>
