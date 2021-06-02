@@ -3,6 +3,7 @@
 <br>
 <%= link_to 'New Note', new_note_path %>
 <br>
+<%= render template: 'search/index', locals: { path: 'notes_path' } %>
 <br>
 <table>
   <thead>
@@ -23,4 +24,4 @@
     <% end %>
   </tbody>
 </table>
-<%= render template: 'pagination/index', locals: {path: 'notes_path'} %>
+<%= render template: 'pagination/index', locals: { path: 'notes_path' } %>
