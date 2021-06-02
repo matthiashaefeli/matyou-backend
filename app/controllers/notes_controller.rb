@@ -12,7 +12,7 @@ class NotesController < ApplicationController
                Note.order('created_at DESC')
              elsif
                search_value
-               Note.where('title like ?', "%#{search_value}%")
+               Note.where('lower(title) like ?', "%#{search_value.downcase}%")
              else
                Note.order('created_at DESC').limit(10).offset(@page * 10)
              end
