@@ -1,0 +1,5 @@
+<div style='padding-top: 10px'>
+  <%= form_with url: send(path), method: 'get' do |form| %>
+      <%= form.text_field :search, placeholder: 'Search' %> <%= form.submit 'Search' %>
+  <% end %>
+</div>

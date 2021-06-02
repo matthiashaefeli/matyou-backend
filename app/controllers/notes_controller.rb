@@ -6,9 +6,13 @@ class NotesController < ApplicationController
 
   # GET /notes or /notes.json
   def index
+    search_value = params[:search]
     @show_all = true if params[:show_all]
     @notes = if params[:show_all]
                Note.order('created_at DESC')
+             elsif
+               search_value
+               Note.where('title like ?', "%#{search_value}%")
              else
                Note.order('created_at DESC').limit(10).offset(@page * 10)
              end
