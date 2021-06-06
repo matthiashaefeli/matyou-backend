@@ -16,9 +16,8 @@
   <tbody>
     <% @challenges.each do |challenge| %>
       <tr>
-        <td><%= challenge.title %></td>
-        <td><%= challenge.url %></td>
-        <td><%= link_to 'Show', challenge %></td>
+        <td><%= link_to challenge.title, challenge %></td>
+        <td><%= link_to challenge.url, challenge.url, target: '_blank' %></td>
         <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
         <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
