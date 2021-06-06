@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ create update destroy new edit ]
-  before_action :user_authenticated, only: %i[ create update destroy new edit ]
+  before_action :authenticate_user!, only: %i[ create update destroy new edit index ]
+  before_action :user_authenticated, only: %i[ create update destroy new edit index ]
   before_action :set_pages, only: %i[ index ]
 
   # GET /notes or /notes.json

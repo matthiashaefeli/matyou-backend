@@ -1,5 +1,7 @@
 class CareersController < ApplicationController
   before_action :set_career, only: %i[ show edit update destroy send_email ]
+  before_action :authenticate_user!, only: %i[ create update destroy new edit index ]
+  before_action :user_authenticated, only: %i[ create update destroy new edit index ]
   before_action :set_pages, only: %i[ index ]
 
   # GET /careers or /careers.json
