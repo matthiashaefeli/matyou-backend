@@ -6,7 +6,10 @@
 
 <p>
   <strong>Description:</strong>
+  <%# @note.body.body.attachments.first[:filename].blank? %>
+  <div data-controller="richtext">
   <%= @note.body %>
+  </div>
 </p>
 
 <%= link_to 'Edit', edit_note_path(@note) %> |
