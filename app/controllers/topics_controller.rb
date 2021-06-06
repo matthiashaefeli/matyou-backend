@@ -1,6 +1,8 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ show edit update destroy ]
   before_action :set_pages, only: %i[ index ]
+  before_action :authenticate_user!, only: %i[ create update destroy new edit index ]
+  before_action :user_authenticated, only: %i[ create update destroy new edit index ]
 
   # GET /topics or /topics.json
   def index
