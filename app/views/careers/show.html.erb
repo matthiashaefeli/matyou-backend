@@ -1,3 +1,4 @@
+<%= render template: 'navbar/index' %>
 <%= form_with(url: send_email_careers_path(id: @career.id), method: "post") do |form| %>
   <%= form.text_field :email, placeholder: 'My Email' %>
   <%= form.submit "Send" %>
