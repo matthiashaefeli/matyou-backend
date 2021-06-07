@@ -70,4 +70,8 @@ class DataController < ApplicationController
     end
     render json: array
   end
+
+  def lists
+    lists = List.order(id: :desc)
+  end
 end

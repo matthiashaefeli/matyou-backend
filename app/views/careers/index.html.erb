@@ -16,8 +16,16 @@
     <% @careers.each do |career| %>
       <tr>
         <td><%= link_to career.title, career %></td>
-        <td><%= link_to 'Edit', edit_career_path(career) %></td>
-        <td><%= link_to 'Destroy', career, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to edit_career_path(career) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to career, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -18,8 +18,16 @@
       <tr>
         <td><%= link_to challenge.title, challenge %></td>
         <td><%= link_to challenge.url, challenge.url, target: '_blank' %></td>
-        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= link_to edit_challenge_path(challenge) do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to challenge, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="far fa-trash-alt"></i>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
