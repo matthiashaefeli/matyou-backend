@@ -71,7 +71,16 @@ class DataController < ApplicationController
     render json: array
   end
 
+  # Get 'data/lists'
   def lists
     lists = List.order(id: :desc)
+    array = []
+    lists.each do |l|
+      l_hash = l.as_json
+      l_hash[:url] = url_for(l.body.embeds.find{|embeds| embeds.image?})
+      array.push l_hash
+      l_hash[:comments] = l.comments.as_json
+    end
+    render json: array
   end
 end
