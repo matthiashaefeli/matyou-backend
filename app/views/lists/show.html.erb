@@ -8,5 +8,18 @@
   <%= @list.body %>
 </p>
 
+<ul>
+  <% @list.comments.each do |comment| %>
+    <li>
+      <%= comment.body %>
+      <%= link_to comment_path(comment), method: :delete do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= render 'comments/form', comment: @comment %>
+
 <%= link_to 'Edit', edit_list_path(@list) %> |
 <%= link_to 'Back', lists_path %>
