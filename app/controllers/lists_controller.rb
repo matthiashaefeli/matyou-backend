@@ -2,10 +2,20 @@ class ListsController < ApplicationController
   before_action :set_list, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ create update destroy new edit index ]
   before_action :user_authenticated, only: %i[ create update destroy new edit index ]
+  before_action :set_pages, only: %i[ index ]
 
   # GET /lists or /lists.json
   def index
-    @lists = List.all
+    search_value = params[:search]
+    @show_all = true if params[:show_all]
+    @lists = if params[:show_all]
+               List.order('created_at DESC')
+             elsif
+               search_value
+               List.where('lower(title) like ?', "%#{search_value.downcase}%")
+             else
+               List.order('created_at DESC').limit(10).offset(@page * 10)
+             end
   end
 
   # GET /lists/1 or /lists/1.json
@@ -70,5 +80,9 @@ class ListsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def list_params
       params.require(:list).permit(:title, :link, :body)
+    end
+
+    def set_pages
+      @page ||= params[:page].to_i || 0
     end
 end
