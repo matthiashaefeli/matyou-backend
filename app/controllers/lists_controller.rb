@@ -10,6 +10,9 @@ class ListsController < ApplicationController
 
   # GET /lists/1 or /lists/1.json
   def show
+    @comment = Comment.new
+    @commenteable_type = 'List'
+    @commenteable_id = @list.id
   end
 
   # GET /lists/new
