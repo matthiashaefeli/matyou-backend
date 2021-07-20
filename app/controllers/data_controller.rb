@@ -77,9 +77,11 @@ class DataController < ApplicationController
     array = []
     lists.each do |l|
       l_hash = l.as_json
-      l_hash[:url] = url_for(l.body.embeds.find{|embeds| embeds.image?})
+      l_hash[:comments] = []
+      l.comments.each do |c|
+        l_hash[:comments] << c.body.body
+      end
       array.push l_hash
-      l_hash[:comments] = l.comments.as_json
     end
     render json: array
   end
