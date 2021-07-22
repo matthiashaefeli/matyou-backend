@@ -79,7 +79,7 @@ class DataController < ApplicationController
       l_hash = l.as_json
       l_hash[:comments] = []
       l.comments.each do |c|
-        l_hash[:comments] << c.body.body
+        l_hash[:comments] << {id: c.id, body: c.body.body}
       end
       array.push l_hash
     end
