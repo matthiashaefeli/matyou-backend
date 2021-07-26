@@ -7,6 +7,7 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     search_value = params[:search]
+    @count = Book.all.count / 10
     @show_all = true if params[:show_all]
     @books = if params[:show_all]
                Book.order('created_at DESC')

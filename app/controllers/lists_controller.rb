@@ -7,6 +7,7 @@ class ListsController < ApplicationController
   # GET /lists or /lists.json
   def index
     search_value = params[:search]
+    @count = List.all.count / 10
     @show_all = true if params[:show_all]
     @lists = if params[:show_all]
                List.order('created_at DESC')

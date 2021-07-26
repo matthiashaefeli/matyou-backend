@@ -7,6 +7,7 @@ class TopicsController < ApplicationController
   # GET /topics or /topics.json
   def index
     @show_all = true if params[:show_all]
+    @count = Topic.all.count / 10
     @topics = if params[:show_all]
                 Topic.order('created_at DESC')
               else

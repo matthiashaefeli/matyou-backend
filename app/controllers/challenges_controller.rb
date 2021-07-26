@@ -7,6 +7,7 @@ class ChallengesController < ApplicationController
   # GET /challenges or /challenges.json
   def index
     @show_all = true if params[:show_all]
+    @count = Challenge.all.count / 10
     @challenges = if params[:show_all]
                     Challenge.order('created_at DESC')
                   else

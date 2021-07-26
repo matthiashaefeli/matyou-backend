@@ -7,6 +7,7 @@ class NotesController < ApplicationController
   # GET /notes or /notes.json
   def index
     search_value = params[:search]
+    @count = Note.all.count / 10
     @show_all = true if params[:show_all]
     @notes = if params[:show_all]
                Note.order('created_at DESC')
