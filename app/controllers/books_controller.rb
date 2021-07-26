@@ -6,9 +6,13 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
+    search_value = params[:search]
     @show_all = true if params[:show_all]
     @books = if params[:show_all]
                Book.order('created_at DESC')
+             elsif
+               search_value
+               Book.where('lower(title) like ?', "%#{search_value.downcase}%")
              else
                Book.order('created_at DESC').limit(10).offset(@page * 10)
              end

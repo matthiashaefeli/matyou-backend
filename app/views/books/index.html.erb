@@ -3,6 +3,7 @@
 <br>
 <%= link_to 'New Book', new_book_path %>
 <br>
+<%= render template: 'search/index', locals: { path: 'books_path' } %>
 <br>
 <table>
   <thead>
