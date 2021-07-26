@@ -1,6 +1,6 @@
 
 <%= link_to 'first page |', send(path) %>
 <%= link_to 'prev page |', send(path, { page: @page - 1 }) if @page > 0 %>
-<b>Page:<%= @page %></b> |
+<b>Page:<%= @page + 1 %> / <%= @count + 1 %></b> |
 <%= link_to 'next page |', send(path, { page: @page + 1 }) if @count > @page %>
 <%= link_to ' show all', send(path, { show_all: true }) unless @show_all %>
