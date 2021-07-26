@@ -6,6 +6,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs or /blogs.json
   def index
+    @count = Blog.all.count / 10
     @show_all = true if params[:show_all]
     @blogs = if params[:show_all]
                Blog.order('created_at DESC')

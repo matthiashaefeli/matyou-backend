@@ -7,6 +7,7 @@ class CareersController < ApplicationController
   # GET /careers or /careers.json
   def index
     search_value = params[:search]
+    @count = Career.all.count / 10
     @show_all = true if params[:show_all]
     @careers = if params[:show_all]
                 Career.order('created_at DESC')
