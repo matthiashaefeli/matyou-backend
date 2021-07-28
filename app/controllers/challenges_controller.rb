@@ -6,13 +6,17 @@ class ChallengesController < ApplicationController
 
   # GET /challenges or /challenges.json
   def index
-    @show_all = true if params[:show_all]
+    search_value = params[:search]
     @count = Challenge.all.count / 10
+    @show_all = true if params[:show_all]
     @challenges = if params[:show_all]
-                    Challenge.order('created_at DESC')
-                  else
-                    Challenge.order('created_at DESC').limit(10).offset(@page * 10)
-                  end
+               Challenge.order('created_at DESC')
+             elsif
+               search_value
+               Challenge.where('lower(title) like ?', "%#{search_value.downcase}%")
+             else
+               Challenge.order('created_at DESC').limit(10).offset(@page * 10)
+             end
   end
 
   # GET /challenges/1 or /challenges/1.json
