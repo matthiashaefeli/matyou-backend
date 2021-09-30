@@ -12,7 +12,7 @@
 <p><strong>Comments</strong></p>
 
 <ul>
-  <% @book.comments.each do |comment| %>
+  <% @book.comments.order(id: 'asc').each do |comment| %>
     <li>
       <%= comment.body %>
       <%= link_to comment_path(comment), method: :delete do %>
