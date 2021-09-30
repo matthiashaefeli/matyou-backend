@@ -17,7 +17,7 @@ class DataController < ApplicationController
   def book
     book = Book.find(params[:id])
     book_hash = book.as_json
-    book_hash['comments'] = book.comments.map{|c| { id: c.id, comment: c.body.body.to_html} }
+    book_hash['comments'] = book.comments.order(id: 'desc').map{|c| { id: c.id, comment: c.body.body.to_html} }
     book_hash['url'] = url_for(book.body.embeds.find{|embeds| embeds.image?})
     render json: book_hash
   end
