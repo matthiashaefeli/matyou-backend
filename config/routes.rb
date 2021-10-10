@@ -14,13 +14,13 @@ Rails.application.routes.draw do
   resource :careers do
     post :send_email, on: :member
   end
-  get 'data/books', to: 'data#books'
-  get 'data/notes', to: 'data#notes'
-  get 'data/challenges', to: 'data#challenges'
-  get 'data/blogs', to: 'data#blogs'
-  get 'data/book/:id', to: 'data#book'
-  get 'data/topics', to: 'data#topics'
-  get 'data/cmds', to: 'data#cmds'
-  get 'data/lists', to: 'data#lists'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :data do
+    resources :books, only: [:index, :show]
+    resources :notes, only: [:index]
+    resources :topics, only: [:index]
+    resources :challenges, only: [:index]
+    resources :cmds, only: [:index]
+    resources :lists, only: [:index]
+    resources :blogs, only: [:index]
+  end
 end
